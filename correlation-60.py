@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import math
 
 
-#模型参数
+# Model parameters
 EL=-70    #mV
 tau_s=16  #ms
 gs=1300   #pA
@@ -25,16 +25,16 @@ Vr=-70    #mV  reset voltage after a spike
 
 neuronNumber=2000   #number of two-compartment neuron models
 
-#时间精度、长度设置
+# Time resolution and duration settings
 dt=0.1    #ms
 time=600  #ms
 N=round(time/dt)
 t=np.arange(0,N+1)*dt #t=[0,0.1,0.2,...,N*dt]
 
-#噪声参数设置
+# Noise parameter settings
 alpha=1
 
-#无噪声信号输入设置
+# Noise-free signal input settings
 td0=200    #ms
 low_ratio_d=0.4
 ts0=200   #ms
@@ -43,7 +43,7 @@ low_ratio_s=0.5
 #f function
 f = lambda x: 1/(1+math.exp((Ed-x)/Dd))
 
-#卷积定义
+# Convolution definition
 def Convolution_K_S(S,t):
     if t<=0.5:
         return 0
@@ -57,7 +57,7 @@ def Convolution_K_S(S,t):
             count=count+1
     return count
 
-#获取相关系数
+# Get the correlation coefficient
 def get_correlation(phi, sigma, Id0, Is0):
 
     Id=np.zeros(N+1)
@@ -81,7 +81,7 @@ def get_correlation(phi, sigma, Id0, Is0):
     
     for counter in range(0,neuronNumber):
     
-    	#设置噪声
+    	# Set noise
         z1=np.random.normal(0,sigma,N)
         z2=np.random.normal(0,sigma,N)
     
